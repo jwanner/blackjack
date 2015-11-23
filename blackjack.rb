@@ -8,6 +8,22 @@ def popping(card)
   $s_deck.delete(card)
 end
 
+result = 1.is_a? Numeric 
+
+def score (cards)
+	result = cards.is_a? Numeric
+	
+	if result == true
+		puts "YAy"
+	elsif cards.index(0) == "A"
+		puts "Ace in the hole"
+	else
+		puts "royals"
+	end
+end
+
+puts score ($deck[18])
+puts $deck[18]
 
 player = Array.new
 card1 = $s_deck[0]
@@ -31,8 +47,17 @@ dealer_show = dealer2
 
 
 
-print "Player shows: #{player}"
-print "\nDealer shows #{dealer_show}"
 
-# print "Would you like a hit?",prompt
+# print "Player shows: #{player}"
+# print "\nDealer shows #{dealer_show}"
+
+
+# print "Would you like a hit?"
+# prompt
 # response = $stdin.gets.chomp.downcase
+
+# if response == "hit"
+# 	player.push($s_deck[0])
+# elsif response == "stay"
+# 	print player
+# end
