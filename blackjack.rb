@@ -4,26 +4,31 @@ $deck = values.product(suits)
 $s_deck = $deck.shuffle
 prompt = "> "
 
+player_score = 0
+dealer_score = 0
+
+
 def popping(card)
   $s_deck.delete(card)
 end
 
-result = 1.is_a? Numeric 
 
-def score (cards)
-	result = cards.is_a? Numeric
-	
-	if result == true
-		puts "YAy"
-	elsif cards.index(0) == "A"
-		puts "Ace in the hole"
-	else
-		puts "royals"
+def score (cards,hand)    
+	first = cards.map { |x| x.to_s }[0].chars.first
+	puts first
+	if first == "H" || first == "S" || first== "C" || first == "D"
+		number = cards.slice(0)
+		hand + number
+	elsif first == "A"
+		hand + 11
+	elsif first == "J" || first == "Q" || first == "K"
+		hand + 10
 	end
 end
 
-puts score ($deck[18])
-puts $deck[18]
+
+
+
 
 player = Array.new
 card1 = $s_deck[0]
@@ -45,19 +50,30 @@ popping(dealer2)
 
 dealer_show = dealer2
 
+player_prompt = "Player shows: #{player_score}"
+dealer_prompt = "\nDealer shows #{dealer_show}"
 
 
 
-# print "Player shows: #{player}"
-# print "\nDealer shows #{dealer_show}"
+
+score(card1,player_score)
+score(card2, player_score)
+
+ print player_prompt 
+ print dealer_prompt
 
 
-# print "Would you like a hit?"
-# prompt
-# response = $stdin.gets.chomp.downcase
+ print "Would you like a hit?"
+ prompt
+ response = $stdin.gets.chomp.downcase
 
-# if response == "hit"
-# 	player.push($s_deck[0])
-# elsif response == "stay"
-# 	print player
-# end
+if response == "hit"
+	player.push($s_deck[0])
+elsif response == "stay"
+	print player_score
+end
+
+
+
+
+
