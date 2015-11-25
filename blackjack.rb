@@ -3,9 +3,7 @@ suits = ["Hearts", "Spades", "Clubs", "Diamonds"]
 $deck = values.product(suits)
 $s_deck = $deck.shuffle
 prompt = "> "
-
-player_score = 0
-dealer_score = 0
+total = "Player total is:"
 
 
 def popping(card)
@@ -13,22 +11,21 @@ def popping(card)
 end
 
 
-def score (cards,hand)    
-	first = cards.map { |x| x.to_s }[0].chars.first
-	puts first
-	if first == "H" || first == "S" || first== "C" || first == "D"
+def score(cards)
+	face = cards.map { |x| x.to_s }[0].chars.first
+	if face == "A"
+		puts 11
+	elsif face == "J" || face == "Q" || face == "K"
+		puts 10
+	else
 		number = cards.slice(0)
-		hand + number
-	elsif first == "A"
-		hand + 11
-	elsif first == "J" || first == "Q" || first == "K"
-		hand + 10
+		puts number
 	end
 end
 
 
 
-
+# puts "Dealing the cards"
 
 player = Array.new
 card1 = $s_deck[0]
@@ -50,30 +47,26 @@ popping(dealer2)
 
 dealer_show = dealer2
 
-player_prompt = "Player shows: #{player_score}"
+player_prompt = "Player shows: #{player}"
 dealer_prompt = "\nDealer shows #{dealer_show}"
 
+print player_prompt
+print dealer_prompt
 
 
-
-score(card1,player_score)
-score(card2, player_score)
-
- print player_prompt 
- print dealer_prompt
-
-
- print "Would you like a hit?"
- prompt
- response = $stdin.gets.chomp.downcase
-
-if response == "hit"
-	player.push($s_deck[0])
-elsif response == "stay"
-	print player_score
-end
+	puts score(card1) + score(card2)
+	# arr.push(score(i))
+	# puts arr.inject(:+)
 
 
 
 
+#  print "\nWould you like a hit?"
+#  prompt
+#  response = $stdin.gets.chomp.downcase
 
+# if response == "hit"
+# 	player.push($s_deck[0])
+# elsif response == "stay"
+# 	print player_score
+# end
