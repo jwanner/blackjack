@@ -58,8 +58,8 @@ c2 = score(card2)
 
 
 player_total = c1 + c2
-p_total = "Player total is: #{player_total}"
-puts p_total 
+p_total = "\nPlayer total is: #{player_total}"
+puts p_total
 
 print "\nWould you like a hit?"
  prompt
@@ -67,7 +67,8 @@ print "\nWould you like a hit?"
 
 if response == "hit"
 	player.push($s_deck[0])
-	puts player
+	puts player[2]
+	player_total.push.score(player[2])
 else
 	puts player
 end
@@ -80,7 +81,11 @@ d2 = score(dealer2)
 
 dealer_total = d1 + d2
 d_total = "Dealer total is #{dealer_total}"
-puts d_total 
+
+if dealer_total > 17
+	puts "Dealer stays"
+elsif dealer_total < 17
+end
 
 
 
@@ -88,10 +93,10 @@ puts d_total
 
 
 
-# while 
+
+# while
 # 	response == "hit"
 #     player.push($s_deck[0])
 # elsif response == "stay"
 # 	print player_total
 # end
-
